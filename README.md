@@ -24,17 +24,7 @@ Backend:
 
 ## Starting the app
 
-Frontend:
-
-```shell
-cd client
-# Optional: if you are using NVM
-# nvm use 
-npm install
-npm start
-```
-
-Backend:
+### Backend
 
 ```shell
 cd server
@@ -42,5 +32,26 @@ cd server
 # rvm use
 gem install bundler
 bundle install
+rails db:migrate RAILS_ENV=development
 rails s
+```
+
+If you get an error, make sure you don't have another process running on port 3000.
+
+### Frontend
+
+First, make sure to have a `.env` file with the contents of `.env.example`. In development, you can use the same variables.
+
+```shell
+cd client
+cp .env.example .env
+```
+
+Then, run the following commands:
+
+```shell
+# Optional: if you are using NVM
+# nvm use 
+npm install
+npm start
 ```
