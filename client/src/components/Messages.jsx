@@ -25,12 +25,14 @@ const Messages = () => {
       </div>
     );
   }
+
   if (error) {
     return <CustomAlert text="Failed to fetch messages. Please try again." />;
   }
+
   const renderedMessages = messages
     .sort((message1, message2) => Date.parse(message2.created_at) - Date.parse(message1.created_at))
-    .map((message) => <Message key={message.id} messages={messages} message={message} setMessages={setMessages} />);
+    .map((message) => <Message key={message.id} message={message} />);
   return <div>{renderedMessages}</div>;
 };
 

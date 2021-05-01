@@ -18,8 +18,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      byebug
-      ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, MessageSerializer.new(@message))
+      ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, { event_type: MessageChannel::MESSAGE_CREATED, data: @message })
       render json: @message, status: :created, location: @message
     else
       render json: @message.errors, status: :unprocessable_entity
@@ -29,7 +28,8 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1
   def update
     if @message.update(message_params)
-      render json: @message
+      ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, { event_type: MessageChannel::MESSAGE_UPDATED, data: @message })
+      render json: @message, status: :ok
     else
       render json: @message.errors, status: :unprocessable_entity
     end
@@ -38,6 +38,12 @@ class MessagesController < ApplicationController
   # DELETE /messages/1
   def destroy
     @message.destroy
+    if @message.destroyed?
+      ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, { event_type: MessageChannel::MESSAGE_DELETED, data: @message.id })
+      render status: :ok
+    else
+      render json: @message.errors, status: :internal_server_error
+    end
   end
 
   private

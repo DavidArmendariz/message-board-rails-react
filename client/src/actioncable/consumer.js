@@ -14,16 +14,13 @@ export default class ActionCableConsumer {
     return this.cable.subscriptions.create(this.channelName, {
       connected: this.connected.bind(this),
       disconnected: this.disconnected.bind(this),
-      received: this.received.bind(this),
+      received: this.receivedCallback,
     });
   }
   connected() {
-    console.log('connected');
+    console.log(`Connected (${this.url}) to the channel '${this.channelName}'`);
   }
   disconnected() {
-    console.log('disconnected');
-  }
-  received(data) {
-    this.receivedCallback(data);
+    console.log(`Disconnected (${this.url}) from the channel '${this.channelName}'`);
   }
 }
