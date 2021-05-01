@@ -1,7 +1,8 @@
 import React from 'react';
 import headerStyles from './Header.module.scss';
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
 import { RiAddFill } from 'react-icons/ri';
+import { langTerms } from '../../constants/text';
 
 const Header = (props) => {
   const { open, setOpen } = props;
@@ -14,11 +15,11 @@ const Header = (props) => {
         <div className={headerStyles.customButton}>
           <CustomButton
             onClick={toggleNewMessage}
-            text="New message"
+            text={langTerms.newMessage}
             Icon={<RiAddFill className={headerStyles.newMessageButton} />}
           />
         </div>
-        <div>Message Board</div>
+        <div>{langTerms.messageBoard}</div>
       </div>
       <div className={headerStyles.divider} />
     </>

@@ -3,13 +3,13 @@ import Card from 'react-bootstrap/Card';
 import { AiFillDelete } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
-import MessageApi from '../api/message';
+import MessageApi from '../../api/message';
 import messageStyles from './Message.module.scss';
-import { langTerms } from '../constants/text';
-import { MessagesContext } from '../contexts';
+import { langTerms } from '../../constants/text';
+import { MessagesContext } from '../../contexts';
 import Form from 'react-bootstrap/Form';
-import CustomButton from './CustomButton';
-import CustomTooltip from './CustomTooltip';
+import CustomButton from '../CustomButton/CustomButton';
+import CustomTooltip from '../CustomTooltip/CustomTooltip';
 
 const Message = (props) => {
   const { message } = props;
@@ -79,10 +79,6 @@ const Message = (props) => {
         event.target.blur();
         onUpdateMessage();
         break;
-      case 'Esc':
-        event.target.blur();
-        onCancelEdit();
-        break;
       default:
         break;
     }
@@ -117,12 +113,12 @@ const Message = (props) => {
         </Form>
         {openEdit && (
           <div className={messageStyles.editActions}>
-            <CustomButton onClick={onUpdateMessage} text="Save" />
-            <CustomButton onClick={onCancelEdit} text="Cancel" variant="danger" />
+            <CustomButton onClick={onUpdateMessage} text={langTerms.save} />
+            <CustomButton onClick={onCancelEdit} text={langTerms.cancel} variant="danger" />
           </div>
         )}
       </Card.Body>
-      <CustomTooltip text="Delete">
+      <CustomTooltip text={langTerms.delete}>
         <div className={messageStyles.actions}>
           <AiFillDelete onClick={onDeleteMessage} className={messageStyles.icon} />
         </div>

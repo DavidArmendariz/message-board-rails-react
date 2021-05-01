@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import CustomButton from './CustomButton';
+import { langTerms } from '../../constants/text';
+import CustomButton from '../CustomButton/CustomButton';
 
 const CustomForm = (props) => {
   const { onSubmit } = props;
@@ -20,11 +21,11 @@ const CustomForm = (props) => {
   return (
     <Form>
       <Form.Group>
-        <Form.Label>Title</Form.Label>
+        <Form.Label>{langTerms.title}</Form.Label>
         <Form.Control type="text" value={title} onChange={onTitleChange} />
       </Form.Group>
       <Form.Group controlId="formBasicPassword">
-        <Form.Label>Body</Form.Label>
+        <Form.Label>{langTerms.body}</Form.Label>
         <Form.Control as="textarea" rows={10} value={body} onChange={onBodyChange} />
       </Form.Group>
       <CustomButton onClick={onClick} text="Submit" />

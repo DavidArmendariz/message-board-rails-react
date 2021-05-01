@@ -1,17 +1,19 @@
+import { eventTypes } from '../constants/event-types';
+
 export function onMessageEventReceived(setMessages) {
   return function (event) {
     const eventType = event.event_type;
     const data = event.data;
     switch (eventType) {
-      case 'message_created':
+      case eventTypes.messageCreated:
         setMessages((prevMessages) => [...prevMessages, data]);
         break;
-      case 'message_deleted':
+      case eventTypes.messageDeleted:
         setMessages((prevMessages) => prevMessages.filter((message) => message.id !== data));
         break;
-      case 'message_updated':
-        setMessages((prevState) => {
-          const updatedMessages = [...prevState];
+      case eventTypes.messageUpdated:
+        setMessages((prevMessages) => {
+          const updatedMessages = [...prevMessages];
           const indexOfMessage = updatedMessages.findIndex((message) => message.id === data.id);
           updatedMessages[indexOfMessage] = data;
           return updatedMessages;

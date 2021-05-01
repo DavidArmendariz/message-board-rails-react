@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import messagesStyles from './Messages.module.scss';
 import { useQuery } from 'react-query';
-import MessageApi from '../api/message';
-import CustomSpinner from './CustomSpinner';
+import MessageApi from '../../api/message';
+import CustomSpinner from '../CustomSpinner/CustomSpinner';
 import Message from './Message';
-import { MESSAGES_QUERY } from '../constants/queries';
-import { MessagesContext } from '../contexts';
-import CustomAlert from './CustomAlert';
+import { MESSAGES_QUERY } from '../../constants/queries';
+import { MessagesContext } from '../../contexts';
+import CustomAlert from '../CustomAlert/CustomAlert';
+import { langTerms } from '../../constants/text';
 
 const Messages = () => {
   const { messages, setMessages } = useContext(MessagesContext);
@@ -27,7 +28,7 @@ const Messages = () => {
   }
 
   if (error) {
-    return <CustomAlert text="Failed to fetch messages. Please try again." />;
+    return <CustomAlert text={langTerms.failedMessagesFetch} />;
   }
 
   const renderedMessages = messages

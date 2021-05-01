@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import appStyles from './App.module.scss';
-import Header from './components/Header';
-import Messages from './components/Messages';
-import NewMessage from './components/NewMessage';
+import Header from './components/Header/Header';
+import Messages from './components/Messages/Messages';
+import NewMessage from './components/NewMessage/NewMessage';
 import ActionCableConsumer from './actioncable/consumer';
 import env from './config/environment';
-import ToastNotification from './components/ToastNotification';
+import ToastNotification from './components/ToastNotification/ToastNotification';
 import MessagesProvider from './providers/Messages';
 import { onMessageEventReceived } from './actioncable/messages';
 
