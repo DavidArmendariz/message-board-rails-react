@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
     @message.destroy
     if @message.destroyed?
       ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, { event_type: MessageChannel::MESSAGE_DELETED, data: @message.id })
-      render status: :ok
+      render status: :no_content
     else
       render json: @message.errors, status: :internal_server_error
     end
