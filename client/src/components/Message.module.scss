@@ -1,0 +1,45 @@
+.card {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.inputTitle {
+  cursor: pointer;
+  padding: 4px;
+  font-size: 2rem;
+  &:focus {
+    cursor: text;
+  }
+}
+
+.createdAt {
+  font-style: italic;
+}
+
+.inputBody {
+  cursor: pointer;
+  padding: 4px;
+  &:focus {
+    cursor: text;
+  }
+}
+
+.editActions {
+  display: flex;
+  button {
+    margin-right: 10px;
+  }
+}

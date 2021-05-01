@@ -5,6 +5,7 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    byebug
     broadcast(CHANNEL_NAME, data)
   end
 end

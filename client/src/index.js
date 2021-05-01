@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ActionCableProvider from './contexts/ActionCableContext';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import './index.scss';
+
+import App from './App';
+import QueryProvider from './providers/Query';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ActionCableProvider>
+    <QueryProvider>
       <App />
-    </ActionCableProvider>
+    </QueryProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

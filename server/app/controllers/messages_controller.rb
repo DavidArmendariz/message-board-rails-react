@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
+      byebug
+      ActionCable.server.broadcast(MessageChannel::CHANNEL_NAME, MessageSerializer.new(@message))
       render json: @message, status: :created, location: @message
     else
       render json: @message.errors, status: :unprocessable_entity

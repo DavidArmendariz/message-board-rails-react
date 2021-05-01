@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customButton {
+  margin-right: auto;
+}
+
+.divider {
+  margin: 10px 0;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #000000;
+}
+
+.newMessageButton {
+  color: #ffffff;
+  font-size: 1.5rem;
+}

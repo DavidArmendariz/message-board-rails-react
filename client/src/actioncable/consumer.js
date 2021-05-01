@@ -1,19 +1,20 @@
 import { createConsumer } from '@rails/actioncable';
 
 export default class ActionCableConsumer {
-  constructor(url, channelName) {
+  constructor(url, channelName, receivedCallback) {
     this.url = url;
     this.channelName = channelName;
+    this.receivedCallback = receivedCallback;
     this.cable = this.buildConsumer();
   }
   buildConsumer() {
     return createConsumer(this.url);
   }
-  getSubscription() {
+  subscribe() {
     return this.cable.subscriptions.create(this.channelName, {
-      connected: this.connected,
-      disconnected: this.disconnected,
-      received: this.received,
+      connected: this.connected.bind(this),
+      disconnected: this.disconnected.bind(this),
+      received: this.received.bind(this),
     });
   }
   connected() {
@@ -23,6 +24,6 @@ export default class ActionCableConsumer {
     console.log('disconnected');
   }
   received(data) {
-    console.log('data received', data);
+    this.receivedCallback(data);
   }
 }
